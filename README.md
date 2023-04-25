@@ -1,2 +1,2 @@
 # Smart Band API 
-## Autores: 
+## Autores: Diego Pardo y Pablo Sandoval
