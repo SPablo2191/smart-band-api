@@ -1,0 +1,19 @@
+import datetime
+from db import db
+
+
+class Result(db.model):
+    __tablename__ = "result"
+    id = db.Column(db.Integer, primary_key=True)
+    number_steps = db.Column(db.Integer, nullable=False)
+    calories = db.Column(db.Float, nullable=False)
+    average_heart_rate = db.Column(db.Float, nullable=False)
+    distance = db.Column(db.Float, nullable=False)
+    average_rate = db.Column(db.String(20), nullable=False)
+    average_speed = db.Column(db.Float, nullable=False)
+    average_cadene = db.Column(db.Float, nullable=False)
+    average_stride = db.Column(db.Float, nullable=False)
+    result = db.Column(db.Float, nullable=False)
+    device_name = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.Boolean, default=True, nullable=False)
+    register_date = db.Column(db.DateTime, default=datetime.utcnow())
