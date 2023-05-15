@@ -5,3 +5,6 @@ class Test(db.model):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.Boolean, default=True, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
+    exercises =  db.relationship(
+        "Exercise", backref="test", secondary="exercise_test", lazy=True
+    )
