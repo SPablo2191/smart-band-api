@@ -5,4 +5,4 @@ class School(db.model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
-    registerDate = db.Column(db.DateTime, default=datetime.utcnow())
+    register_date = db.Column(db.DateTime, default=datetime.utcnow())
