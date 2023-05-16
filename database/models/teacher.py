@@ -1,8 +1,8 @@
-import datetime
+from datetime import datetime
 from database.db import db
 
 
-class Teacher(db.model):
+class Teacher(db.Model):
     __tablename__ = "teacher"
     id = db.Column(db.Integer, primary_key=True)
     DNI = db.Column(db.String(15), nullable=False)

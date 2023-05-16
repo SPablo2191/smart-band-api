@@ -1,8 +1,8 @@
-import datetime
+from datetime import datetime
 from database.db import db
 
 
-class Result(db.model):
+class Result(db.Model):
     __tablename__ = "result"
     id = db.Column(db.Integer, primary_key=True)
     number_steps = db.Column(db.Integer, nullable=False)

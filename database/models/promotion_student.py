@@ -1,6 +1,6 @@
-import datetime
+from datetime import datetime
 from database.db import db
-class PromotionStudent(db.model):
+class PromotionStudent(db.Model):
     __tablename__ = "promotion_student"
     id = db.Column(db.Integer, primary_key=True)
     promotion_id = db.Column(db.Integer, db.ForeignKey("promotion.id"), nullable=False)

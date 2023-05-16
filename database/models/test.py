@@ -1,8 +1,8 @@
-import datetime
+from datetime import datetime
 from database.db import db
 
 
-class Test(db.model):
+class Test(db.Model):
     __tablename__ = "test"
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.Boolean, default=True, nullable=False)

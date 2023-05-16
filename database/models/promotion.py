@@ -1,8 +1,8 @@
-import datetime
+from datetime import datetime
 from database.db import db
 
 
-class Promotion(db.model):
+class Promotion(db.Model):
     __tablename__ = "promotion"
     id = db.Column(db.Integer, primary_key=True)
     promotion_year = db.Column(db.DateTime, nullable=False)

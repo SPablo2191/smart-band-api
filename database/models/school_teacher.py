@@ -1,6 +1,6 @@
-import datetime
+from datetime import datetime
 from database.db import db
-class SchoolTeacher(db.model):
+class SchoolTeacher(db.Model):
     __tablename__ = "school_teacher"
     id = db.Column(db.Integer, primary_key=True)
     school_id = db.Column(db.Integer, db.ForeignKey("school.id"), nullable=False)

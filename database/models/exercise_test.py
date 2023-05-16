@@ -1,6 +1,6 @@
-import datetime
+from datetime import datetime
 from database.db import db
-class ExerciseTest(db.model):
+class ExerciseTest(db.Model):
     __tablename__ = "exercise_test"
     id = db.Column(db.Integer, primary_key=True)
     test_id =  db.Column(db.Integer, db.ForeignKey("test.id"), nullable=False)
