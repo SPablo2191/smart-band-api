@@ -17,3 +17,6 @@ class Result(db.model):
     device_name = db.Column(db.String(100), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
+    exercise_test_id = db.Column(db.Integer, db.ForeignKey("exercise.id"), nullable=False)
+    student_id = db.Column(db.Integer, db.ForeignKey("student.id"), nullable=False)
+    student = db.relationship("Student", backref="result", uselist=False)

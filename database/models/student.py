@@ -16,3 +16,4 @@ class Student(db.model):
     diseases = db.relationship(
         "Disease", backref="student", secondary="disease_student", lazy=True
     )
+    results = db.relationship("Result", backref="student", lazy=True)
