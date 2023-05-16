@@ -19,4 +19,4 @@ class Result(db.Model):
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
     exercise_test_id = db.Column(db.Integer, db.ForeignKey("exercise.id"), nullable=False)
     student_id = db.Column(db.Integer, db.ForeignKey("student.id"), nullable=False)
-    student = db.relationship("Student", backref="result", uselist=False)
+    # student = db.relationship("Student", backref="result", uselist=False)
