@@ -16,3 +16,5 @@ class StatusTestSchema(Schema):
     description = fields.String()
     status = fields.Boolean()
     register_date = fields.Date()
+
+
