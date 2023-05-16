@@ -1,9 +1,14 @@
 from flask import Flask
 from flask_cors import CORS
-
+from database.db import init_app,initialize_db,add_engine
+from database.db_maker import create_db
 app = Flask(__name__)
 CORS(app=app)
-
+initialize_db(app=app)
+init_app(app=app)
+add_engine(app=app)
+# drop_db(app=app)
+create_db(app=app)
 
 @app.route("/")
 @app.route("/api")

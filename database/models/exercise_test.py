@@ -1,5 +1,5 @@
 import datetime
-from db import db
+from database.db import db
 class ExerciseTest(db.model):
     __tablename__ = "exercise_test"
     id = db.Column(db.Integer, primary_key=True)

@@ -1,5 +1,5 @@
 import datetime
-from db import db
+from database.db import db
 
 
 class Test(db.model):

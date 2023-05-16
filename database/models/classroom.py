@@ -1,5 +1,5 @@
 import datetime
-from db import db
+from database.db import db
 class Class(db.model):
     __tablename__ = "class"
     id = db.Column(db.Integer, primary_key=True)

@@ -1,5 +1,5 @@
 import datetime
-from db import db
+from database.db import db
 class PromotionStudent(db.model):
     __tablename__ = "promotion_student"
     id = db.Column(db.Integer, primary_key=True)

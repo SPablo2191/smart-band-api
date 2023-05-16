@@ -1,5 +1,5 @@
 import datetime
-from db import db
+from database.db import db
 
 
 class Teacher(db.model):
