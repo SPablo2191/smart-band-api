@@ -11,8 +11,4 @@ class Disease(db.Model):
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
 
 
-class DiseaseSchema(Schema):
-    id = fields.Integer()
-    description = fields.String()
-    status = fields.Boolean()
-    register_date = fields.Date()
+

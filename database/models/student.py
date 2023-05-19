@@ -21,18 +21,4 @@ class Student(db.Model):
     results = db.relationship("Result", backref="student", lazy=True)
 
 
-class StudentSchema(Schema):
-    id = fields.Integer()
-    name = fields.String()
-    last_name = fields.String()
-    age = fields.Float()
-    weight = fields.Float()
-    size = fields.Float()
-    DNI = fields.String()
-    status = fields.Boolean()
-    register_date = fields.Date()
-    diseases = fields.Nested(DiseaseSchema, many=True)
 
-
-student_schema = StudentSchema()
-students_schema = StudentSchema(many=True)
