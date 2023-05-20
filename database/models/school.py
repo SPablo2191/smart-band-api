@@ -16,3 +16,7 @@ class SchoolSchema(Schema):
     description = fields.String()
     status = fields.Boolean()
     register_date = fields.Date()
+
+
+school_schema = SchoolSchema()
+schools_schema = SchoolSchema(many=True)
