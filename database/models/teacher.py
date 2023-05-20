@@ -30,3 +30,6 @@ class TeacherSchema(Schema):
     status = fields.Boolean()
     register_date = fields.Date()
     schools = fields.Nested(SchoolSchema, many=True)
+
+teacher_schema = TeacherSchema()
+teachers_schema = TeacherSchema(many=True)
