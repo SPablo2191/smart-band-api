@@ -1,7 +1,7 @@
 from datetime import datetime
 from database.db import db
 from marshmallow import Schema, fields
-from .disease import DiseaseSchema
+
 
 
 class Student(db.Model):
