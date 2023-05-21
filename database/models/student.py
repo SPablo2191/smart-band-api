@@ -12,6 +12,8 @@ class Student(db.Model):
     size = db.Column(db.Float, nullable=False)
     DNI = db.Column(db.String(15), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
+    seat_height = db.Column(db.Float,nullable=False)
+    waist = db.Column(db.Float, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
     diseases = db.relationship(
         "Disease", backref="student", secondary="disease_student", lazy=True
