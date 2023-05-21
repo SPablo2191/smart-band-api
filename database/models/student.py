@@ -1,5 +1,7 @@
 from datetime import datetime
 from database.db import db
+from marshmallow import Schema, fields
+
 
 
 class Student(db.Model):
@@ -19,3 +21,6 @@ class Student(db.Model):
         "Disease", backref="student", secondary="disease_student", lazy=True
     )
     results = db.relationship("Result", backref="student", lazy=True)
+
+
+
