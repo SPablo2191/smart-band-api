@@ -39,3 +39,12 @@ class SchoolAPI(Resource):
             mimetype="application/json",
             status=200,
         )
+    def delete(self, id):
+        existing_school = School.query.get_or_404(id)
+        existing_school.status = False
+        db.session.commit()
+        return Response(
+            school_schema.dumps(existing_school),
+            mimetype="application/json",
+            status=200,
+        )
