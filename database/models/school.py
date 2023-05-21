@@ -13,7 +13,7 @@ class School(db.Model):
 
 class SchoolSchema(Schema):
     id = fields.Integer()
-    description = fields.String()
+    name = fields.String()
     status = fields.Boolean()
     register_date = fields.Date()
 

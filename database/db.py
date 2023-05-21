@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from sqlalchemy.pool import QueuePool
+
 ma = Marshmallow()
 db = SQLAlchemy()
 
@@ -18,7 +19,7 @@ def add_engine(app):
             poolclass=QueuePool,
             pool_size=app.config["SQLALCHEMY_POOL_SIZE"],
             max_overflow=app.config["SQLALCHEMY_MAX_OVERFLOW"],
-            pool_timeout=60
+            pool_timeout=60,
         )
         db.session.configure(bind=engine)
 
