@@ -6,7 +6,7 @@ from database.db import db
 
 class SchoolsAPI(Resource):
     def get(self):
-        schools = School.query.filter(School.status == True).all()
+        schools = School.query.filter(School.status == True).order_by(School.id).all()
         return Response(
             schools_schema.dumps(schools), mimetype="application/json", status=200
         )
