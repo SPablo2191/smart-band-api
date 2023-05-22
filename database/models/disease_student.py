@@ -9,3 +9,5 @@ class DiseaseStudent(db.Model):
     disease_id = db.Column(db.Integer, db.ForeignKey("disease.id"), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
+    student = db.relationship("Student", back_populates="diseases")
+    disease = db.relationship("Disease", back_populates="students")
