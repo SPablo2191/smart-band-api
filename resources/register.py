@@ -11,7 +11,7 @@ class RegisterAPI(Resource):
         schools = body['schools']
         body.pop('schools',None)
         new_teacher = Teacher(**body)
-        new_teacher.password = bcrypt.generate_password_hash(new_teacher.password)
+        new_teacher.password = bcrypt.generate_password_hash(new_teacher.password).decode('utf-8')
         teacher_schools = []
         db.session.add(new_teacher)
         try: 
