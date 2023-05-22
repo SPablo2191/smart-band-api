@@ -20,7 +20,7 @@ class PromotionSchema(Schema):
     promotion_year = fields.Date()
     status = fields.Boolean()
     register_date = fields.Date()
-    students = fields.Nested()
+    students = fields.Nested(StudentSchema)
 
 
 promotion_schema = PromotionSchema()

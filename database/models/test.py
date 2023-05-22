@@ -2,6 +2,7 @@ from datetime import datetime
 from database.db import db
 from marshmallow import Schema, fields
 from .status_test import StatusTestSchema
+from .promotion import PromotionSchema
 class Test(db.Model):
     __tablename__ = "test"
     id = db.Column(db.Integer, primary_key=True)
@@ -21,7 +22,8 @@ class TestSchema(Schema):
     id = fields.Integer()
     status = fields.Boolean()
     register_date = fields.Date()
-    status_test = fields.Nested(StatusTestSchema, many=True)
+    status_test = fields.Nested(StatusTestSchema)
+    promotion = fields.Nested(PromotionSchema)
 
 
 test_schema = TestSchema()
