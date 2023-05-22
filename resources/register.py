@@ -14,15 +14,15 @@ class RegisterAPI(Resource):
         new_teacher.password = bcrypt.generate_password_hash(new_teacher.password)
         teacher_schools = []
         db.session.add(new_teacher)
-        db.session.commit()
         try: 
+            db.session.commit()
             for school in schools:
                 new_teacher_school = SchoolTeacher(school_id=school['id'],teacher_id=new_teacher.id)
                 teacher_schools.append(new_teacher_school)
             db.session.add_all(teacher_schools)
             db.session.commit()
         except:
-            return make_response({"error": "No se pudo registrar las escuelas del usuario"}, 400)
+            return make_response({"error": "No se pudo registrar al usuario"}, 400)
         return Response(
             teacher_schema.dumps(new_teacher), mimetype="application/json", status=200
         )
