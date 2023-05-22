@@ -3,8 +3,8 @@ from flask_cors import CORS
 from database.db import init_app, initialize_db, add_engine
 from resources.routes import initialize_routes
 from flask_restful import Api
+from functions.encrypt import initialize_encrypt
 import os
-
 
 def config(app):
     load_dotenv()
@@ -17,3 +17,4 @@ def config(app):
     add_engine(app=app)
     api = Api(app)
     initialize_routes(api=api)
+    initialize_encrypt(app=app)
