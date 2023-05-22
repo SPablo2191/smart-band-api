@@ -6,9 +6,7 @@ from functions.encrypt import bcrypt
 
 class TeachersAPI(Resource):
     def get(self):
-        teachers = (
-            Teacher.query.filter(Teacher.status == True).order_by(Teacher.id).all()
-        )
+        teachers = Teacher.query.filter(Teacher.status == True).order_by(Teacher.id).all()
         return Response(
             teachers_schema.dumps(teachers), mimetype="application/json", status=200
         )

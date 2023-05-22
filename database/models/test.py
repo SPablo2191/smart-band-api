@@ -1,6 +1,6 @@
 from datetime import datetime
 from database.db import db
-
+from marshmallow import Schema, fields
 
 class Test(db.Model):
     __tablename__ = "test"
@@ -16,3 +16,12 @@ class Test(db.Model):
     exercises = db.relationship(
         "Exercise", backref="test", secondary="exercise_test", lazy=True
     )
+
+class TestSchema(Schema):
+    id = fields.Integer()
+    status = fields.Boolean()
+    register_date = fields.Date()
+
+
+test_schema = TestSchema()
+tests_schema = TestSchema(many=True)

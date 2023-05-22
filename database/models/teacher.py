@@ -2,6 +2,7 @@ from datetime import datetime
 from database.db import db
 from marshmallow import Schema, fields
 from .school import SchoolSchema
+from .test import TestSchema
 
 
 class Teacher(db.Model):
@@ -30,6 +31,7 @@ class TeacherSchema(Schema):
     status = fields.Boolean()
     register_date = fields.Date()
     schools = fields.Nested(SchoolSchema, many=True)
+    tests = fields.Nested(TestSchema, many=True)
 
 teacher_schema = TeacherSchema()
 teachers_schema = TeacherSchema(many=True)
