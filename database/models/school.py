@@ -1,7 +1,7 @@
 from datetime import datetime
 from database.db import db
 from marshmallow import Schema, fields
-
+from .classroom import ClassSchema
 
 class School(db.Model):
     __tablename__ = "school"
@@ -16,6 +16,7 @@ class SchoolSchema(Schema):
     name = fields.String()
     status = fields.Boolean()
     register_date = fields.Date()
+    classes = fields.Nested(ClassSchema,many=True)
 
 
 school_schema = SchoolSchema()
