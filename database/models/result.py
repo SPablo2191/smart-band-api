@@ -1,6 +1,6 @@
 from datetime import datetime
 from database.db import db
-
+from marshmallow import Schema, fields
 
 class Result(db.Model):
     __tablename__ = "result"
@@ -20,3 +20,23 @@ class Result(db.Model):
     exercise_test_id = db.Column(db.Integer, db.ForeignKey("exercise.id"), nullable=False)
     student_id = db.Column(db.Integer, db.ForeignKey("student.id"), nullable=False)
     # student = db.relationship("Student", backref="result", uselist=False)
+
+class ResultSchema(Schema):
+    id = fields.Integer()
+    number_steps = fields.Integer()
+    calories = fields.Float()
+    average_heart_rate = fields.Float()
+    distance = fields.Float()
+    average_rate = fields.String()
+    average_speed = fields.Float()
+    average_cadene = fields.Float()
+    average_stride = fields.Float()
+    result = fields.Float()
+    device_name = fields.String()
+    status = fields.Boolean()
+    register_date = fields.Date()
+
+
+
+result_schema = ResultSchema()
+results_schema = ResultSchema(many=True)
