@@ -9,6 +9,17 @@ class Disease(db.Model):
     description = db.Column(db.String(100), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
+    students = db.relationship("DiseaseStudent", back_populates="disease")
 
+class DiseaseSchema(Schema):
+    id = fields.Integer()
+    description = fields.String()
+    last_name = fields.String()
+    status = fields.Boolean()
+    register_date = fields.Date()
+
+
+disease_schema = DiseaseSchema()
+diseases_schema = DiseaseSchema(many=True)
 
 

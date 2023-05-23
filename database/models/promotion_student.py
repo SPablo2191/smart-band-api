@@ -7,3 +7,5 @@ class PromotionStudent(db.Model):
     student_id = db.Column(db.Integer, db.ForeignKey("student.id"), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
+    student = db.relationship("Student", back_populates="promotions")
+    promotion = db.relationship("Promotion")

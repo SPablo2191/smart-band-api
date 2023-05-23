@@ -7,25 +7,25 @@ Para hacer uso de la API de manera local es necesario realizar los siguientes pa
 
 1) Ingresar los siguiente comandos en consola:
 
-```python
+```bash
 python3 -m venv [nombreDelEntornoVirtual]
 ```
 
 este comando les creara un entorno virtual para para poder importar posteriormente los paquetes ahi.Para activarlo se emplea el siguiente comando:
 
-```python
+```bash
 source nombreDelEntornoVirtual/bin/activate
 ```
 
 y para apagarlo:
 
-```python
+```bash
 deactivate
 ```
 
 2) despues correr el siguiente comando para obtener los paquetes empleados en la API:
 
-```python
+```bash
 pip install -r requirements.txt
 ```
 
@@ -41,4 +41,8 @@ Esto es para emplear que la API se pueda conectar con la base de datos de manera
 Si se desease crear y usar una base  datos en docker se puede realizar corriendo el siguiente comando:
 ```docker
 docker run --name [NOMBRE DEL CONTENEDOR] -e POSTGRES_PASSWORD=[CONTRASEÑA] -p [PUERTO]:[PUERTO] -d [NOMBRE DE USUARIO]
+```
+4) Para levantar el servidor resta realizar el siguiente comando y ejecutarlo:
+```bash
+python manage.py
 ```

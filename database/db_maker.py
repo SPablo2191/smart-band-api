@@ -24,5 +24,6 @@ def create_db(app):
         os.environ['TABLES_CREATED'] = 'TRUE'
 
 def drop_db(app):
+    """Eliminar tablase en una base de datos """
     with app.app_context():
         db.drop_all()

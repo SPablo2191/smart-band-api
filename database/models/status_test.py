@@ -18,3 +18,5 @@ class StatusTestSchema(Schema):
     register_date = fields.Date()
 
 
+status_test_schema = StatusTestSchema()
+status_tests_schema = StatusTestSchema(many=True)

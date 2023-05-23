@@ -1,7 +1,8 @@
 from datetime import datetime
 from database.db import db
 from marshmallow import Schema, fields
-from .school import SchoolSchema
+from .school_teacher import TeacherSchoolSchema
+from .test import TestSchema
 
 
 class Teacher(db.Model):
@@ -15,9 +16,8 @@ class Teacher(db.Model):
     status = db.Column(db.Boolean, default=True, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
     tests = db.relationship("Test", backref="teacher", lazy=True)
-    schools = db.relationship(
-        "School", backref="teacher", secondary="school_teacher", lazy=True
-    )
+    schools = db.relationship('SchoolTeacher', back_populates='teacher')
+
 
 
 class TeacherSchema(Schema):
@@ -29,7 +29,8 @@ class TeacherSchema(Schema):
     email = fields.String()
     status = fields.Boolean()
     register_date = fields.Date()
-    schools = fields.Nested(SchoolSchema, many=True)
+    schools = fields.Nested(TeacherSchoolSchema, many=True)
+    tests = fields.Nested(TestSchema, many=True)
 
 teacher_schema = TeacherSchema()
 teachers_schema = TeacherSchema(many=True)
