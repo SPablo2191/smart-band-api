@@ -13,7 +13,9 @@ class SchoolsAPI(MethodResource,Resource):
         return Response(
             schools_schema.dumps(schools), mimetype="application/json", status=200
         )
-
+    @doc(description='Petición POST para añadir un nuevo colegio', tags=['School'])
+    @use_kwargs(school_schema, location=('json'))
+    @marshal_with(school_schema)
     def post(self):
         body = request.get_json()
         new_school = School(**body)
@@ -24,13 +26,18 @@ class SchoolsAPI(MethodResource,Resource):
         )
 
 
-class SchoolAPI(Resource):
+class SchoolAPI(MethodResource,Resource):
+    @doc(description='Petición GET para recuperar un colegio por su ID', tags=['School'])
+    @marshal_with(school_schema)
     def get(self, id):
         school = School.query.get_or_404(id)
         return Response(
             school_schema.dumps(school), mimetype="application/json", status=200
         )
 
+    @doc(description='Petición PUT para actualizar un colegio por su ID', tags=['School'])
+    @use_kwargs(school_schema, location=('json'))
+    @marshal_with(school_schema)
     def put(self, id):
         existing_school = School.query.get_or_404(id)
         body = request.get_json()
@@ -42,6 +49,8 @@ class SchoolAPI(Resource):
             mimetype="application/json",
             status=200,
         )
+    @doc(description='Petición DELETE para eliminar un colegio por su ID', tags=['School'])
+    @marshal_with(school_schema)
     def delete(self, id):
         existing_school = School.query.get_or_404(id)
         existing_school.status = False
