@@ -8,6 +8,7 @@ from functions.encrypt import bcrypt
 class RegisterAPI(Resource):
     def post(self):
         body = request.get_json()
+        print(body)
         schools = body['schools']
         body.pop('schools',None)
         new_teacher = Teacher(**body)
