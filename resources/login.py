@@ -8,7 +8,7 @@ from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
 
 class LoginAPI(MethodResource,Resource):
-    @doc(description='Petición POST para registrar un nuevo profesor', tags=['Authentication'])
+    @doc(description='Petición POST para iniciar sesión', tags=['Authentication'])
     @use_kwargs(teacher_schema, location=('json'))
     @marshal_with(teacher_schema)
     def post(self):
