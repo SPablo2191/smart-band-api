@@ -16,3 +16,5 @@ def initialize_routes(api):
     docs.register(SchoolsAPI)
     docs.register(SchoolAPI)
     docs.register(TeachersAPI)
+    docs.register(LoginAPI)
+    docs.register(RegisterAPI)
