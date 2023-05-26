@@ -2,7 +2,7 @@ from .schools import SchoolsAPI, SchoolAPI
 from .teachers import TeachersAPI
 from .register import RegisterAPI
 from .login import LoginAPI
-
+from functions.swagger import docs
 url = "/api/"
 
 
@@ -12,3 +12,5 @@ def initialize_routes(api):
     api.add_resource(TeachersAPI, url + "teachers")
     api.add_resource(RegisterAPI, url + "register")
     api.add_resource(LoginAPI, url + "login")
+    # add docs
+    docs.register(SchoolsAPI)
