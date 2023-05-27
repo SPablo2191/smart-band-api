@@ -32,5 +32,20 @@ class TeacherSchema(Schema):
     schools = fields.Nested(TeacherSchoolSchema, many=True)
     tests = fields.Nested(TestSchema, many=True)
 
+class LoginSchema(Schema):
+    password = fields.String()
+    email = fields.String()
+
+class RegisterSchema(Schema):
+    DNI = fields.String()
+    name = fields.String()
+    last_name = fields.String()
+    password = fields.String()
+    email = fields.String()
+    schools = fields.Nested(TeacherSchoolSchema, many=True)
+
+
 teacher_schema = TeacherSchema()
 teachers_schema = TeacherSchema(many=True)
+login_schema = LoginSchema()
+register_schema = RegisterSchema()

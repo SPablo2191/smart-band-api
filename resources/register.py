@@ -1,6 +1,6 @@
 from flask import Response, request,make_response
 from flask_restful import Resource
-from database.models.teacher import Teacher, teacher_schema
+from database.models.teacher import Teacher, teacher_schema, register_schema
 from database.models.school_teacher import SchoolTeacher
 from database.db import db
 from functions.encrypt import bcrypt
@@ -8,7 +8,7 @@ from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
 class RegisterAPI(MethodResource,Resource):
     @doc(description='Petición POST para iniciar sesión', tags=['Authentication'])
-    @use_kwargs(teacher_schema, location=('json'))
+    # @use_kwargs(register_schema, location=('json'))
     @marshal_with(teacher_schema)
     def post(self, **kwargs):
         body = request.get_json()
