@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from flask_cors import CORS
 from database.db import init_app, initialize_db, add_engine
-from resources.routes import initialize_routes
+from resources.routes import initialize_routes,register_docs
 from flask_restful import Api
 from functions.encrypt import initialize_encrypt
 from flask_jwt_extended import JWTManager
@@ -23,4 +23,5 @@ def config(app):
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     jwt = JWTManager(app)
     api_spec_conf(app=app)
+    register_docs()
 

@@ -19,6 +19,8 @@ def initialize_routes(api):
     api.add_resource(DiseasesAPI, url + "diseases")
     api.add_resource(DiseaseAPI, url + "diseases/<int:id>")
     # add docs
+
+def register_docs():
     docs.register(SchoolAPI)
     docs.register(SchoolsAPI)
     docs.register(TeachersAPI)
@@ -28,4 +30,3 @@ def initialize_routes(api):
     docs.register(DiseasesAPI)
     docs.register(LoginAPI)
     docs.register(RegisterAPI)
-
