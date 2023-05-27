@@ -16,7 +16,7 @@ class DiseasesAPI(MethodResource,Resource):
     @doc(description='Petición POST para añadir un nueva enfermedad', tags=['Disease'])
     @use_kwargs(disease_schema)
     @marshal_with(disease_schema)
-    def post(self):
+    def post(self, **kwargs):
         body = request.get_json()
         print(body)
         new_disease = Disease(**body)
@@ -39,7 +39,7 @@ class DiseaseAPI(MethodResource,Resource):
     @doc(description='Petición PUT para actualizar una enfermedad por su ID', tags=['Disease'])
     @use_kwargs(disease_schema, location=('json'))
     @marshal_with(disease_schema)
-    def put(self, id):
+    def put(self, id, **kwargs):
         existing_disease = Disease.query.get_or_404(id)
         body = request.get_json()
         data = Disease(**body)

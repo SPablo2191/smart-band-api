@@ -16,7 +16,7 @@ class StudentsAPI(MethodResource,Resource):
     @doc(description='Petición POST para añadir un nuevo estudiante', tags=['Student'])
     @use_kwargs(student_schema, location=('json'))
     @marshal_with(student_schema)
-    def post(self):
+    def post(self, **kwargs):
         body = request.get_json()
         new_student = Student(**body)
         db.session.add(new_student)
@@ -37,7 +37,7 @@ class StudentAPI(MethodResource,Resource):
     @doc(description='Petición PUT para actualizar un estudiante por su ID', tags=['Student'])
     @use_kwargs(student_schema, location=('json'))
     @marshal_with(student_schema)
-    def put(self, id):
+    def put(self, id, **kwargs):
         existing_student = Student.query.get_or_404(id)
         body = request.get_json()
         data = Student(**body)

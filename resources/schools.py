@@ -16,7 +16,7 @@ class SchoolsAPI(MethodResource,Resource):
     @doc(description='Petición POST para añadir un nuevo colegio', tags=['School'])
     @use_kwargs(school_schema, location=('json'))
     @marshal_with(school_schema)
-    def post(self):
+    def post(self, **kwargs):
         body = request.get_json()
         new_school = School(**body)
         db.session.add(new_school)
@@ -38,7 +38,7 @@ class SchoolAPI(MethodResource,Resource):
     @doc(description='Petición PUT para actualizar un colegio por su ID', tags=['School'])
     @use_kwargs(school_schema, location=('json'))
     @marshal_with(school_schema)
-    def put(self, id):
+    def put(self, id, **kwargs):
         existing_school = School.query.get_or_404(id)
         body = request.get_json()
         data = School(**body)
