@@ -14,7 +14,6 @@ class Disease(db.Model):
 class DiseaseSchema(Schema):
     id = fields.Integer()
     description = fields.String()
-    last_name = fields.String()
     status = fields.Boolean()
     register_date = fields.Date()
 

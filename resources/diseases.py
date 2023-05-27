@@ -14,10 +14,11 @@ class DiseasesAPI(MethodResource,Resource):
             diseases_schema.dumps(diseases), mimetype="application/json", status=200
         )
     @doc(description='Petición POST para añadir un nueva enfermedad', tags=['Disease'])
-    @use_kwargs(disease_schema, location=('json'))
+    @use_kwargs(disease_schema)
     @marshal_with(disease_schema)
     def post(self):
         body = request.get_json()
+        print(body)
         new_disease = Disease(**body)
         db.session.add(new_disease)
         db.session.commit()
