@@ -49,7 +49,7 @@ class DiseaseAPI(MethodResource,Resource):
             mimetype="application/json",
             status=200,
         )
-    @doc(description='Petición DELETE para eliminar una enfermedad por su ID', tags=['School'])
+    @doc(description='Petición DELETE para eliminar una enfermedad por su ID', tags=['Disease'])
     @marshal_with(disease_schema)
     def delete(self, id):
         existing_disease = Disease.query.get_or_404(id)
