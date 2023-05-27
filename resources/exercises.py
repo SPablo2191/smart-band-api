@@ -49,7 +49,7 @@ class ExerciseAPI(MethodResource,Resource):
             mimetype="application/json",
             status=200,
         )
-    @doc(description='Petición DELETE para eliminar un colegio por su ID', tags=['Exercise'])
+    @doc(description='Petición DELETE para eliminar un ejercicio por su ID', tags=['Exercise'])
     @marshal_with(exercise_schema)
     def delete(self, id):
         existing_exercise = Exercise.query.get_or_404(id)

@@ -6,6 +6,7 @@ from .students import StudentAPI,StudentsAPI
 from .diseases import DiseaseAPI,DiseasesAPI
 from .exercises import ExerciseAPI,ExercisesAPI
 from .classes import ClassAPI,ClassesAPI
+from .status_tests import StatusTestAPI,StatusTestsAPI
 from functions.swagger import docs
 url = "/api/"
 
@@ -24,6 +25,8 @@ def initialize_routes(api):
     api.add_resource(ExerciseAPI, url + "exercises/<int:id>")
     api.add_resource(ClassesAPI, url + "classes")
     api.add_resource(ClassAPI, url + "classes/<int:id>")
+    api.add_resource(StatusTestsAPI, url + "status")
+    api.add_resource(StatusTestAPI, url + "status/<int:id>")
     # add docs
 
 def register_docs():
@@ -40,3 +43,5 @@ def register_docs():
     docs.register(ExerciseAPI)
     docs.register(ClassesAPI)
     docs.register(ClassAPI)
+    docs.register(StatusTestsAPI)
+    docs.register(StatusTestAPI)
