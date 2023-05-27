@@ -13,7 +13,6 @@ class Exercise(db.Model):
 
 class ExerciseSchema(Schema):
     id = fields.Integer()
-    DNI = fields.String()
     description = fields.String()
     status = fields.Boolean()
     register_date = fields.Date()
