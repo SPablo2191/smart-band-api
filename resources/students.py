@@ -48,7 +48,7 @@ class StudentAPI(MethodResource,Resource):
             mimetype="application/json",
             status=200,
         )
-    @doc(description='Petición DELETE para eliminar un colegio por su ID', tags=['Student'])
+    @doc(description='Petición DELETE para eliminar un estudiante por su ID', tags=['Student'])
     @marshal_with(student_schema)
     def delete(self, id):
         existing_student = Student.query.get_or_404(id)
