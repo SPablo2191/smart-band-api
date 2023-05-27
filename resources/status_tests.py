@@ -1,6 +1,5 @@
 from flask import Response, request
 from flask_restful import Resource
-from database.models.exercise import exercise_schema,exercises_schema,Exercise
 from database.models.status_test import status_test_schema,status_tests_schema,StatusTest
 from database.db import db
 from flask_apispec.views import MethodResource
