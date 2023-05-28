@@ -5,6 +5,7 @@ from resources.routes import initialize_routes
 from flask_restful import Api
 from functions.encrypt import initialize_encrypt
 from flask_jwt_extended import JWTManager
+from functions.swagger import api_spec_conf
 import os
 
 def config(app):
@@ -21,3 +22,5 @@ def config(app):
     initialize_encrypt(app=app)
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     jwt = JWTManager(app)
+    api_spec_conf(app=app)
+
