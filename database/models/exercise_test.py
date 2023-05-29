@@ -2,6 +2,7 @@ from datetime import datetime
 from database.db import db
 from marshmallow import Schema, fields
 from .exercise import ExerciseSchema
+from .result import ResultSchema
 class ExerciseTest(db.Model):
     __tablename__ = "exercise_test"
     id = db.Column(db.Integer, primary_key=True)
@@ -11,6 +12,8 @@ class ExerciseTest(db.Model):
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
     test = db.relationship('Test', back_populates='exercises')
     exercise = db.relationship('Exercise')
+    results = db.relationship("Result", backref="exercise_test", lazy=True)
 
 class ExerciseTestSchema(Schema):
     exercise = fields.Nested(ExerciseSchema)
+    results = fields.Nested(ResultSchema)
