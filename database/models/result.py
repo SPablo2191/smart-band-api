@@ -17,9 +17,9 @@ class Result(db.Model):
     device_name = db.Column(db.String(100), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
-    exercise_test_id = db.Column(db.Integer, db.ForeignKey("exercise.id"), nullable=False)
+    exercise_test_id = db.Column(db.Integer, db.ForeignKey("exercise_test.id"), nullable=False)
     student_id = db.Column(db.Integer, db.ForeignKey("student.id"), nullable=False)
-    # student = db.relationship("Student", backref="result", uselist=False)
+
 
 class ResultSchema(Schema):
     id = fields.Integer()
