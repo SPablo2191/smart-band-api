@@ -1,5 +1,5 @@
 from .schools import SchoolsAPI, SchoolAPI
-from .teachers import TeachersAPI
+from .teachers import TeachersAPI, TeacherAPI
 from .register import RegisterAPI
 from .login import LoginAPI
 from .students import StudentAPI,StudentsAPI
@@ -15,6 +15,7 @@ def initialize_routes(api):
     api.add_resource(RegisterAPI, url + "auth/register")
     api.add_resource(LoginAPI, url + "auth/login")
     api.add_resource(TeachersAPI, url + "teachers")
+    api.add_resource(TeacherAPI, url + "teachers/<int:id>")
     api.add_resource(SchoolsAPI, url + "schools")
     api.add_resource(SchoolAPI, url + "schools/<int:id>")
     api.add_resource(StudentsAPI, url + "students")
@@ -33,6 +34,7 @@ def register_docs():
     docs.register(SchoolAPI)
     docs.register(SchoolsAPI)
     docs.register(TeachersAPI)
+    docs.register(TeacherAPI)
     docs.register(StudentAPI)
     docs.register(StudentsAPI)
     docs.register(DiseaseAPI)
