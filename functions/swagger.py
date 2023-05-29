@@ -6,7 +6,7 @@ def api_spec_conf(app):
     app.config.update({
     'APISPEC_SPEC': APISpec(
         title='Smart Band API REST',
-        version='1.0.0',
+        version='1.0.1',
         plugins=[MarshmallowPlugin()],
         openapi_version='2.0.0'
     ),
