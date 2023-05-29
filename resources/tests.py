@@ -6,11 +6,9 @@ from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
 
 class TestsAPI(MethodResource,Resource):
-    @doc(description='Petición GET para recuperar las evaluaciones registradas', tags=['Test'])
-    @use_kwargs(test_params, location='query')
+    @doc(description='Petición GET para recuperar las evaluaciones registradas de un profesor', tags=['Test'])
     @marshal_with(tests_schema)
-    def get(self, **kwargs):
-        teacher_id = kwargs['teacher_id']
+    def get(self, teacher_id):
         tests = Test.query.filter(Test.status == True,Test.teacher_id==teacher_id).order_by(Test.id).all()
         return Response(
             tests_schema.dumps(tests), mimetype="application/json", status=200
@@ -25,6 +23,43 @@ class TestsAPI(MethodResource,Resource):
         db.session.commit()
         return Response(
             test_schema.dumps(new_test), mimetype="application/json", status=200
+        )
+
+
+
+class TestAPI(MethodResource,Resource):
+    @doc(description='Petición GET para recuperar una evaluación por el id del profesor y de la promoción', tags=['Test'])
+    @marshal_with(test_schema)
+    def get(self, teacher_id,promotion_id):
+        test = Test.query.filter_by(teacher_id=teacher_id,promotion_id=promotion_id).first()
+        return Response(
+            test_schema.dumps(test), mimetype="application/json", status=200
+        )
+
+    @doc(description='Petición PUT para actualizar una evaluación por el id del profesor y de la promoción', tags=['Test'])
+    @use_kwargs(test_schema, location=('json'))
+    @marshal_with(test_schema)
+    def put(self, teacher_id,promotion_id, **kwargs):
+        existing_test = Test.query.filter_by(teacher_id=teacher_id,promotion_id=promotion_id).first()
+        body = kwargs
+        data = test_schema(**body)
+        existing_test.name = data.name
+        db.session.commit()
+        return Response(
+            test_schema.dumps(existing_test),
+            mimetype="application/json",
+            status=200,
+        )
+    @doc(description='Petición DELETE para eliminar una evaluación por el id del profesor y de la promoción', tags=['Test'])
+    @marshal_with(test_schema)
+    def delete(self, teacher_id,promotion_id):
+        existing_test = Test.query.filter_by(teacher_id=teacher_id,promotion_id=promotion_id).first()
+        existing_test.status = False
+        db.session.commit()
+        return Response(
+            test_schema.dumps(existing_test),
+            mimetype="application/json",
+            status=200,
         )
 
 
