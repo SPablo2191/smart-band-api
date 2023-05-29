@@ -20,9 +20,9 @@ class TeacherAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar un profesor por su ID', tags=['Teacher'])
     @marshal_with(teacher_schema)
     def get(self, id):
-        exercise = Teacher.query.get_or_404(id)
+        teacher = Teacher.query.get_or_404(id)
         return Response(
-            teacher_schema.dumps(exercise), mimetype="application/json", status=200
+            teacher_schema.dumps(teacher), mimetype="application/json", status=200
         )
 
     @doc(description='Petición PUT para actualizar un profesor por su ID', tags=['Teacher'])

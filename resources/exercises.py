@@ -17,7 +17,7 @@ class ExercisesAPI(MethodResource,Resource):
     @use_kwargs(exercise_schema, location=('json'))
     @marshal_with(exercise_schema)
     def post(self, **kwargs):
-        body = request.get_json()
+        body = kwargs
         new_exercise = Exercise(**body)
         db.session.add(new_exercise)
         db.session.commit()

@@ -18,7 +18,6 @@ class DiseasesAPI(MethodResource,Resource):
     @marshal_with(disease_schema)
     def post(self, **kwargs):
         body = request.get_json()
-        print(body)
         new_disease = Disease(**body)
         db.session.add(new_disease)
         db.session.commit()
