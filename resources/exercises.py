@@ -8,6 +8,7 @@ from flask_jwt_extended import jwt_required
 class ExercisesAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar los ejercicios', tags=['Exercise'])
     @marshal_with(exercises_schema)
+    @jwt_required()
     def get(self):
         exercises = Exercise.query.filter(Exercise.status == True).order_by(Exercise.id).all()
         return Response(
@@ -16,6 +17,7 @@ class ExercisesAPI(MethodResource,Resource):
     @doc(description='Petición POST para añadir un nuevo ejercicio', tags=['Exercise'])
     @use_kwargs(exercise_schema, location=('json'))
     @marshal_with(exercise_schema)
+    @jwt_required()
     def post(self, **kwargs):
         body = kwargs
         new_exercise = Exercise(**body)
@@ -29,6 +31,7 @@ class ExercisesAPI(MethodResource,Resource):
 class ExerciseAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar un ejercicio por su ID', tags=['Exercise'])
     @marshal_with(exercise_schema)
+    @jwt_required()
     def get(self, id):
         exercise = Exercise.query.get_or_404(id)
         return Response(
@@ -38,6 +41,7 @@ class ExerciseAPI(MethodResource,Resource):
     @doc(description='Petición PUT para actualizar un ejercicio por su ID', tags=['Exercise'])
     @use_kwargs(exercise_schema, location=('json'))
     @marshal_with(exercise_schema)
+    @jwt_required()
     def put(self, id, **kwargs):
         existing_exercise = Exercise.query.get_or_404(id)
         body = request.get_json()
@@ -51,6 +55,7 @@ class ExerciseAPI(MethodResource,Resource):
         )
     @doc(description='Petición DELETE para eliminar un ejercicio por su ID', tags=['Exercise'])
     @marshal_with(exercise_schema)
+    @jwt_required()
     def delete(self, id):
         existing_exercise = Exercise.query.get_or_404(id)
         existing_exercise.status = False

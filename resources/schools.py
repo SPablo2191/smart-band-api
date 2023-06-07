@@ -13,6 +13,7 @@ class SchoolsAPI(MethodResource,Resource):
         return Response(
             schools_schema.dumps(schools), mimetype="application/json", status=200
         )
+    
     @doc(description='Petición POST para añadir un nuevo colegio', tags=['School'])
     @use_kwargs(school_schema, location=('json'))
     @marshal_with(school_schema)

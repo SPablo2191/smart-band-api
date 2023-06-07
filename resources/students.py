@@ -8,6 +8,7 @@ from flask_jwt_extended import jwt_required
 class StudentsAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar los estudiantes registrados', tags=['Student'])
     @marshal_with(students_schema)
+    @jwt_required()
     def get(self):
         students = Student.query.filter(Student.status == True).order_by(Student.id).all()
         return Response(
@@ -16,6 +17,7 @@ class StudentsAPI(MethodResource,Resource):
     @doc(description='Petición POST para añadir un nuevo estudiante', tags=['Student'])
     @use_kwargs(student_schema, location=('json'))
     @marshal_with(student_schema)
+    @jwt_required()
     def post(self, **kwargs):
         body = request.get_json()
         new_student = Student(**body)
@@ -28,6 +30,7 @@ class StudentsAPI(MethodResource,Resource):
 class StudentAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar un estudiante por su ID', tags=['Student'])
     @marshal_with(student_schema)
+    @jwt_required()
     def get(self, id):
         school = Student.query.get_or_404(id)
         return Response(
@@ -37,6 +40,7 @@ class StudentAPI(MethodResource,Resource):
     @doc(description='Petición PUT para actualizar un estudiante por su ID', tags=['Student'])
     @use_kwargs(student_schema, location=('json'))
     @marshal_with(student_schema)
+    @jwt_required()
     def put(self, id, **kwargs):
         existing_student = Student.query.get_or_404(id)
         body = request.get_json()
@@ -50,6 +54,7 @@ class StudentAPI(MethodResource,Resource):
         )
     @doc(description='Petición DELETE para eliminar un estudiante por su ID', tags=['Student'])
     @marshal_with(student_schema)
+    @jwt_required()
     def delete(self, id):
         existing_student = Student.query.get_or_404(id)
         existing_student.status = False

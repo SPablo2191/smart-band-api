@@ -8,6 +8,7 @@ from flask_jwt_extended import jwt_required
 class StatusTestsAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar los estados de una evaluación', tags=['StatusTest'])
     @marshal_with(status_tests_schema)
+    @jwt_required()
     def get(self):
         statusTests = StatusTest.query.filter(StatusTest.status == True).order_by(StatusTest.id).all()
         return Response(
@@ -16,6 +17,7 @@ class StatusTestsAPI(MethodResource,Resource):
     @doc(description='Petición POST para añadir un estado de evaluación', tags=['StatusTest'])
     @use_kwargs(status_test_schema, location=('json'))
     @marshal_with(status_test_schema)
+    @jwt_required()
     def post(self, **kwargs):
         body = request.get_json()
         new_status = StatusTest(**body)
@@ -29,6 +31,7 @@ class StatusTestsAPI(MethodResource,Resource):
 class StatusTestAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar un estado de evaluación por su ID', tags=['StatusTest'])
     @marshal_with(status_test_schema)
+    @jwt_required()
     def get(self, id):
         exercise = StatusTest.query.get_or_404(id)
         return Response(
@@ -38,6 +41,7 @@ class StatusTestAPI(MethodResource,Resource):
     @doc(description='Petición PUT para actualizar un estado de evaluación por su ID', tags=['StatusTest'])
     @use_kwargs(status_test_schema, location=('json'))
     @marshal_with(status_test_schema)
+    @jwt_required()
     def put(self, id, **kwargs):
         existing_status = StatusTest.query.get_or_404(id)
         body = request.get_json()
@@ -51,6 +55,7 @@ class StatusTestAPI(MethodResource,Resource):
         )
     @doc(description='Petición DELETE para eliminar un estado de evaluación por su ID', tags=['StatusTest'])
     @marshal_with(status_test_schema)
+    @jwt_required()
     def delete(self, id):
         existing_status = StatusTest.query.get_or_404(id)
         existing_status.status = False
