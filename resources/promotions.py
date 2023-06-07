@@ -4,7 +4,7 @@ from database.models.promotion import promotion_schema,promotions_schema,Promoti
 from database.db import db
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
-
+from flask_jwt_extended import jwt_required
 class PromotionsAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar las promociones de un colegio', tags=['Promotion'])
     @marshal_with(promotions_schema)

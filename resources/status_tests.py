@@ -4,7 +4,7 @@ from database.models.status_test import status_test_schema,status_tests_schema,S
 from database.db import db
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
-
+from flask_jwt_extended import jwt_required
 class StatusTestsAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar los estados de una evaluación', tags=['StatusTest'])
     @marshal_with(status_tests_schema)

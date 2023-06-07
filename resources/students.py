@@ -4,7 +4,7 @@ from database.models.student import Student,student_schema,students_schema
 from database.db import db
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
-
+from flask_jwt_extended import jwt_required
 class StudentsAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar los estudiantes registrados', tags=['Student'])
     @marshal_with(students_schema)

@@ -4,10 +4,12 @@ from database.models.teacher import Teacher, teacher_schema, teachers_schema
 from database.db import db
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
+from flask_jwt_extended import jwt_required
 
 class TeachersAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar los profesores registrados', tags=['Teacher'])
     @marshal_with(teachers_schema)
+    @jwt_required()
     def get(self):
         teachers = Teacher.query.filter(Teacher.status == True).order_by(Teacher.id).all()
         return Response(

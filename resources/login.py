@@ -6,6 +6,7 @@ from functions.encrypt import bcrypt
 from flask_jwt_extended import create_access_token, jwt_required
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
+import datetime
 
 class LoginAPI(MethodResource,Resource):
     @doc(description='Petición POST para iniciar sesión', tags=['Authentication'])
@@ -19,7 +20,9 @@ class LoginAPI(MethodResource,Resource):
             user = Teacher.query.filter(Teacher.email == email).first()
             if not bcrypt.check_password_hash(user.password, password):
                 return make_response({"error": "Contraseña incorrecta"}, 401)
-            access_token = create_access_token(identity=user.DNI)
+            expires = datetime.timedelta(minutes=30)
+
+            access_token = create_access_token(identity=user.DNI,expires_delta=expires)
         except Exception as e:
             return make_response({"error": str(e)}, 404)
         finally:
