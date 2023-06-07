@@ -23,6 +23,4 @@ class LoginAPI(MethodResource,Resource):
         except Exception as e:
             return make_response({"error": str(e)}, 404)
         finally:
-            return Response(
-                access_token, mimetype="application/json", status=200
-            )
+            return make_response({'access_token': access_token},200)
