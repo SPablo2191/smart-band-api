@@ -23,7 +23,6 @@ class LoginAPI(MethodResource,Resource):
             expires = datetime.timedelta(minutes=30)
 
             access_token = create_access_token(identity=user.DNI,expires_delta=expires)
+            return make_response({'access_token': access_token},200)
         except Exception as e:
             return make_response({"error": str(e)}, 404)
-        finally:
-            return make_response({'access_token': access_token},200)
