@@ -4,10 +4,12 @@ from database.models.test import test_schema,tests_schema,test_params,Test
 from database.db import db
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
+from flask_jwt_extended import jwt_required
 
 class TestsAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar las evaluaciones registradas de un profesor', tags=['Test'])
     @marshal_with(tests_schema)
+    @jwt_required()
     def get(self, teacher_id):
         tests = Test.query.filter(Test.status == True,Test.teacher_id==teacher_id).order_by(Test.id).all()
         return Response(

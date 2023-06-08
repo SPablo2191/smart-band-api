@@ -4,10 +4,11 @@ from database.models.promotion import promotion_schema,promotions_schema,Promoti
 from database.db import db
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
-
+from flask_jwt_extended import jwt_required
 class PromotionsAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar las promociones de un colegio', tags=['Promotion'])
     @marshal_with(promotions_schema)
+    @jwt_required()
     def get(self,school_id):
         promotions = Promotion.query.filter(Promotion.status == True,Promotion.school_id == school_id).order_by(Promotion.id).all()
         return Response(
@@ -16,6 +17,7 @@ class PromotionsAPI(MethodResource,Resource):
     @doc(description='Petición POST para añadir una nueva promocion', tags=['Promotion'])
     @use_kwargs(promotion_schema, location=('json'))
     @marshal_with(promotion_schema)
+    @jwt_required()
     def post(self,school_id, **kwargs):
         body = kwargs
         new_promotion = Promotion(**body)
@@ -29,6 +31,7 @@ class PromotionsAPI(MethodResource,Resource):
 class PromotionAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar una promoción por su ID', tags=['Promotion'])
     @marshal_with(promotion_schema)
+    @jwt_required()
     def get(self, id):
         promotion = Promotion.query.get_or_404(id)
         return Response(
@@ -38,6 +41,7 @@ class PromotionAPI(MethodResource,Resource):
     @doc(description='Petición PUT para actualizar una promoción por su ID', tags=['Promotion'])
     @use_kwargs(promotion_schema, location=('json'))
     @marshal_with(promotion_schema)
+    @jwt_required()
     def put(self, id, **kwargs):
         existing_promotion = Promotion.query.get_or_404(id)
         body = request.get_json()
@@ -51,6 +55,7 @@ class PromotionAPI(MethodResource,Resource):
         )
     @doc(description='Petición DELETE para eliminar una promoción por su ID', tags=['Promotion'])
     @marshal_with(promotion_schema)
+    @jwt_required()
     def delete(self, id):
         existing_promotion = Promotion.query.get_or_404(id)
         existing_promotion.status = False
