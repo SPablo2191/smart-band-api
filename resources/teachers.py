@@ -36,7 +36,9 @@ class TeacherAPI(MethodResource,Resource):
         existing_teacher = Teacher.query.get_or_404(id)
         body = request.get_json()
         data = Teacher(**body)
-        existing_teacher = data
+        existing_teacher.name = data.name
+        existing_teacher.last_name = data.last_name
+        existing_teacher.DNI = data.DNI
         db.session.commit()
         return Response(
             teacher_schema.dumps(existing_teacher),
