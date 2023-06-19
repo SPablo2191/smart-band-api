@@ -21,6 +21,7 @@ class TeachersAPI(MethodResource,Resource):
 class TeacherAPI(MethodResource,Resource):
     @doc(description='Petición GET para recuperar un profesor por su ID', tags=['Teacher'])
     @marshal_with(teacher_schema)
+    @jwt_required()
     def get(self, id):
         teacher = Teacher.query.get_or_404(id)
         return Response(
@@ -28,13 +29,14 @@ class TeacherAPI(MethodResource,Resource):
         )
 
     @doc(description='Petición PUT para actualizar un profesor por su ID', tags=['Teacher'])
-    @use_kwargs(teacher_schema, location=('json'))
+    # @use_kwargs(teacher_schema, location=('json'))
     @marshal_with(teacher_schema)
+    @jwt_required()
     def put(self, id, **kwargs):
         existing_teacher = Teacher.query.get_or_404(id)
         body = request.get_json()
         data = Teacher(**body)
-        existing_teacher.name = data.name
+        existing_teacher = data
         db.session.commit()
         return Response(
             teacher_schema.dumps(existing_teacher),
@@ -43,6 +45,7 @@ class TeacherAPI(MethodResource,Resource):
         )
     @doc(description='Petición DELETE para eliminar un profesor por su ID', tags=['Teacher'])
     @marshal_with(teacher_schema)
+    @jwt_required()
     def delete(self, id):
         existing_teacher = Teacher.query.get_or_404(id)
         existing_teacher.status = False
