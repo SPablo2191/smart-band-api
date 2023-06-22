@@ -16,7 +16,7 @@ class ClassesAPI(MethodResource,Resource):
         )
     @doc(description='Petición POST para añadir un nuevo curso', tags=['Class'])
     # @use_kwargs(class_schema, location=('json'))
-    @marshal_with(class_schema)
+    # @marshal_with(class_schema)
     @jwt_required()
     def post(self, **kwargs):
         body = request.get_json()
