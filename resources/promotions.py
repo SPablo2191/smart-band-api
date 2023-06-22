@@ -19,7 +19,7 @@ class PromotionsAPI(MethodResource,Resource):
     @marshal_with(promotion_schema)
     @jwt_required()
     def post(self,school_id, **kwargs):
-        body = kwargs
+        body = request.get_json()
         new_promotion = Promotion(**body)
         db.session.add(new_promotion)
         db.session.commit()
