@@ -15,7 +15,7 @@ class StatusTestsAPI(MethodResource,Resource):
             status_tests_schema.dumps(statusTests), mimetype="application/json", status=200
         )
     @doc(description='Petición POST para añadir un estado de evaluación', tags=['StatusTest'])
-    @use_kwargs(status_test_schema, location=('json'))
+    # @use_kwargs(status_test_schema, location=('json'))
     @marshal_with(status_test_schema)
     @jwt_required()
     def post(self, **kwargs):
@@ -39,13 +39,13 @@ class StatusTestAPI(MethodResource,Resource):
         )
 
     @doc(description='Petición PUT para actualizar un estado de evaluación por su ID', tags=['StatusTest'])
-    @use_kwargs(status_test_schema, location=('json'))
+    # @use_kwargs(status_test_schema, location=('json'))
     @marshal_with(status_test_schema)
     @jwt_required()
     def put(self, id, **kwargs):
         existing_status = StatusTest.query.get_or_404(id)
         body = request.get_json()
-        data = Exercise(**body)
+        data = StatusTest(**body)
         existing_status.name = data.name
         db.session.commit()
         return Response(

@@ -15,7 +15,7 @@ class PromotionsAPI(MethodResource,Resource):
             promotions_schema.dumps(promotions), mimetype="application/json", status=200
         )
     @doc(description='Petición POST para añadir una nueva promocion', tags=['Promotion'])
-    @use_kwargs(promotion_schema, location=('json'))
+    # @use_kwargs(promotion_schema, location=('json'))
     @marshal_with(promotion_schema)
     @jwt_required()
     def post(self,school_id, **kwargs):
@@ -39,7 +39,7 @@ class PromotionAPI(MethodResource,Resource):
         )
 
     @doc(description='Petición PUT para actualizar una promoción por su ID', tags=['Promotion'])
-    @use_kwargs(promotion_schema, location=('json'))
+    # @use_kwargs(promotion_schema, location=('json'))
     @marshal_with(promotion_schema)
     @jwt_required()
     def put(self, id, **kwargs):

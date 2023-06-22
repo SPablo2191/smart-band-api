@@ -15,7 +15,7 @@ class ExercisesAPI(MethodResource,Resource):
             exercises_schema.dumps(exercises), mimetype="application/json", status=200
         )
     @doc(description='Petición POST para añadir un nuevo ejercicio', tags=['Exercise'])
-    @use_kwargs(exercise_schema, location=('json'))
+    # @use_kwargs(exercise_schema, location=('json'))
     @marshal_with(exercise_schema)
     @jwt_required()
     def post(self, **kwargs):
@@ -39,7 +39,7 @@ class ExerciseAPI(MethodResource,Resource):
         )
 
     @doc(description='Petición PUT para actualizar un ejercicio por su ID', tags=['Exercise'])
-    @use_kwargs(exercise_schema, location=('json'))
+    # @use_kwargs(exercise_schema, location=('json'))
     @marshal_with(exercise_schema)
     @jwt_required()
     def put(self, id, **kwargs):

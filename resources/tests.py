@@ -16,7 +16,7 @@ class TestsAPI(MethodResource,Resource):
             tests_schema.dumps(tests), mimetype="application/json", status=200
         )
     @doc(description='Petición POST para añadir un nueva evaluación', tags=['Test'])
-    @use_kwargs(test_schema)
+    # @use_kwargs(test_schema)
     @marshal_with(test_schema)
     def post(self, **kwargs):
         body = kwargs
@@ -39,7 +39,7 @@ class TestAPI(MethodResource,Resource):
         )
 
     @doc(description='Petición PUT para actualizar una evaluación por el id del profesor y de la promoción', tags=['Test'])
-    @use_kwargs(test_schema, location=('json'))
+    # @use_kwargs(test_schema, location=('json'))
     @marshal_with(test_schema)
     def put(self, teacher_id,promotion_id, **kwargs):
         existing_test = Test.query.filter_by(teacher_id=teacher_id,promotion_id=promotion_id).first()

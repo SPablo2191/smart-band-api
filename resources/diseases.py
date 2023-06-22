@@ -15,7 +15,7 @@ class DiseasesAPI(MethodResource,Resource):
             diseases_schema.dumps(diseases), mimetype="application/json", status=200
         )
     @doc(description='Petición POST para añadir un nueva enfermedad', tags=['Disease'])
-    @use_kwargs(disease_schema)
+    # @use_kwargs(disease_schema)
     @marshal_with(disease_schema)
     @jwt_required()
     def post(self, **kwargs):
@@ -39,7 +39,7 @@ class DiseaseAPI(MethodResource,Resource):
         )
 
     @doc(description='Petición PUT para actualizar una enfermedad por su ID', tags=['Disease'])
-    @use_kwargs(disease_schema, location=('json'))
+    # @use_kwargs(disease_schema, location=('json'))
     @marshal_with(disease_schema)
     @jwt_required()
     def put(self, id, **kwargs):
