@@ -42,7 +42,7 @@ def initialize_routes(api):
     api.add_resource(StatusTestAPI, url + "status/<int:id>")
 
     api.add_resource(PromotionsAPI, url + "promotions/<int:school_id>")
-    api.add_resource(PromotionAPI, url + "promotions/<int:id>")
+    api.add_resource(PromotionAPI, url + "promotion/<int:id>")
 
     # add docs
 
