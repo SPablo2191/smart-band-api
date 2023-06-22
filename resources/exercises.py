@@ -19,7 +19,7 @@ class ExercisesAPI(MethodResource,Resource):
     @marshal_with(exercise_schema)
     @jwt_required()
     def post(self, **kwargs):
-        body = kwargs
+        body = request.get_json()
         new_exercise = Exercise(**body)
         db.session.add(new_exercise)
         db.session.commit()
