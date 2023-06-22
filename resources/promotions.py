@@ -41,9 +41,8 @@ class PromotionsAPI(MethodResource, Resource):
         db.session.add(new_promotion)
         db.session.commit()
         for student_data in students:
-            student = Student(**student_data)
             promotion_student = PromotionStudent(
-                promotion_id=new_promotion.id, student_id=student.id
+                promotion_id=new_promotion.id, student_id=student_data['id']
             )
             db.session.add(promotion_student)
 
