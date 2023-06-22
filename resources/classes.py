@@ -15,7 +15,7 @@ class ClassesAPI(MethodResource,Resource):
             classes_schema.dumps(classes), mimetype="application/json", status=200
         )
     @doc(description='Petición POST para añadir un nuevo curso', tags=['Class'])
-    @use_kwargs(class_schema, location=('json'))
+    # @use_kwargs(class_schema, location=('json'))
     @marshal_with(class_schema)
     @jwt_required()
     def post(self, **kwargs):
@@ -39,7 +39,7 @@ class ClassAPI(MethodResource,Resource):
         )
 
     @doc(description='Petición PUT para actualizar un curso por su ID', tags=['Class'])
-    @use_kwargs(class_schema, location=('json'))
+    # @use_kwargs(class_schema, location=('json'))
     @marshal_with(class_schema)
     @jwt_required()
     def put(self, id, **kwargs):
