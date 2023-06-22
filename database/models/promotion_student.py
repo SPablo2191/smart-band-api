@@ -2,6 +2,7 @@ from datetime import datetime
 from database.db import db
 from marshmallow import Schema, fields
 from .school import SchoolSchema
+from .student import StudentSchema
 class PromotionStudent(db.Model):
     __tablename__ = "promotion_student"
     id = db.Column(db.Integer, primary_key=True)
@@ -14,3 +15,4 @@ class PromotionStudent(db.Model):
 
 class PromotionStudentSchema(Schema):
     school = fields.Nested(SchoolSchema)
+    student = fields.Nested(StudentSchema)

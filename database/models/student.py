@@ -4,7 +4,7 @@ from marshmallow import Schema, fields
 from .disease import DiseaseSchema
 from .disease_student import DiseaseStudent
 from .result import ResultSchema
-from .promotion_student import PromotionStudentSchema
+# from .promotion_student import PromotionStudentSchema
 class Student(db.Model):
     __tablename__ = "student"
     id = db.Column(db.Integer, primary_key=True)
@@ -37,7 +37,7 @@ class StudentSchema(Schema):
     waist = db.Float()
     diseases = fields.Nested(DiseaseSchema,many=True)
     results = fields.Nested(ResultSchema,many=True)
-    promotions = fields.Nested(PromotionStudentSchema,many=True)
+    # promotions = fields.Nested(PromotionStudentSchema,many=True)
 
 student_schema = StudentSchema()
 students_schema = StudentSchema(many=True)
