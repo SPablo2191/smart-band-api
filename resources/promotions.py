@@ -43,7 +43,7 @@ class PromotionsAPI(MethodResource, Resource):
         for student_data in students:
             student = Student(**student_data)
             promotion_student = PromotionStudent(
-                promotion=new_promotion, student=student
+                promotion_id=new_promotion.id, student_id=student.id
             )
             db.session.add(promotion_student)
 
