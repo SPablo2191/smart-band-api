@@ -3,6 +3,9 @@ from database.db import db
 from marshmallow import Schema, fields
 from .classroom import class_schema
 from .school import school_schema
+from .promotion_student import PromotionStudentSchema
+
+
 class Promotion(db.Model):
     __tablename__ = "promotion"
     id = db.Column(db.Integer, primary_key=True)
@@ -13,8 +16,7 @@ class Promotion(db.Model):
     prom_class = db.relationship("Class", backref="promotion", uselist=False)
     school = db.relationship("School", backref="promotion", uselist=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
-
-
+    students = db.relationship('PromotionStudent', back_populates='promotion')
 
 class PromotionSchema(Schema):
     id = fields.Integer()
@@ -23,7 +25,7 @@ class PromotionSchema(Schema):
     school = fields.Nested(school_schema)
     status = fields.Boolean()
     register_date = fields.Date()
-
+    students = fields.Nested(PromotionStudentSchema, many=True)
 
 
 promotion_schema = PromotionSchema()
