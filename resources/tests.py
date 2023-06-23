@@ -1,6 +1,7 @@
 from flask import Response, request
 from flask_restful import Resource
 from database.models.test import test_schema, tests_schema, test_params, Test
+from database.models.exercise_test import ExerciseTest
 from database.db import db
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
@@ -29,9 +30,17 @@ class TestsAPI(MethodResource, Resource):
     @marshal_with(test_schema)
     def post(self, **kwargs):
         body = request.get_json()
+        exercises_data = body.pop("exercises", [])
         new_test = Test(**body)
         db.session.add(new_test)
         db.session.commit()
+
+        for exercise_data in exercises_data:
+            exercise = ExerciseTest(exercise_id=exercise_data["id"], test_id=new_test.id)
+            db.session.add(exercise)
+
+        db.session.commit()
+
         return Response(
             test_schema.dumps(new_test), mimetype="application/json", status=200
         )
