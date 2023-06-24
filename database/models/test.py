@@ -10,7 +10,7 @@ class Test(db.Model):
     status = db.Column(db.Boolean, default=True, nullable=False)
     register_date = db.Column(db.DateTime, default=datetime.utcnow())
     status_test_id = db.Column(db.Integer, db.ForeignKey("statusTest.id"), default=0)
-    promotion_id = db.Column(db.Integer, db.ForeignKey("promotion.id"), unique=True)
+    promotion_id = db.Column(db.Integer, db.ForeignKey("promotion.id"))
     teacher_id = db.Column(db.Integer, db.ForeignKey("teacher.id"), nullable=False)
     status_test = db.relationship("StatusTest", backref="test", uselist=False)
     promotion = db.relationship("Promotion", backref="test", uselist=False)
