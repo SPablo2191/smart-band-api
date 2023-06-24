@@ -17,7 +17,6 @@ class SchoolsAPI(MethodResource,Resource):
     @doc(description='Petición POST para añadir un nuevo colegio', tags=['School'])
     # @use_kwargs(school_schema, location=('json'))
     @marshal_with(school_schema)
-    @jwt_required()
     def post(self, **kwargs):
         body = request.get_json()
         new_school = School(**body)
