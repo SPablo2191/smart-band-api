@@ -1,6 +1,7 @@
 from flask import Response, request
 from flask_restful import Resource
 from database.models.student import Student, student_schema, students_schema
+from database.models.result import Result
 from database.db import db
 from flask_apispec.views import MethodResource
 from flask_apispec import marshal_with, doc, use_kwargs
@@ -61,6 +62,8 @@ class StudentAPI(MethodResource, Resource):
         body = request.get_json()
         data = Student(**body)
         existing_student.name = data.name
+        new_result = Result(**body['result'])
+        existing_student.results.append(new_result)
         db.session.commit()
         return Response(
             student_schema.dumps(existing_student),

@@ -72,7 +72,6 @@ class TestAPI(MethodResource, Resource):
         ).first()
         body = request.get_json()
         data = test_schema(**body)
-        existing_test.name = data.name
         db.session.commit()
         return Response(
             test_schema.dumps(existing_test),
