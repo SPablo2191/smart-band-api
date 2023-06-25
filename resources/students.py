@@ -60,9 +60,12 @@ class StudentAPI(MethodResource, Resource):
     def put(self, id, **kwargs):
         existing_student = Student.query.get_or_404(id)
         body = request.get_json()
+        result = body['result']
+        print(result)
+        body.pop('result',None)
         data = Student(**body)
         existing_student.name = data.name
-        new_result = Result(**body['result'])
+        new_result = Result(**result)
         existing_student.results.append(new_result)
         db.session.commit()
         return Response(
