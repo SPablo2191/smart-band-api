@@ -71,7 +71,8 @@ class TestAPI(MethodResource, Resource):
             teacher_id=teacher_id, promotion_id=promotion_id
         ).first()
         body = request.get_json()
-        data = test_schema(**body)
+        data = Test(**body)
+        existing_test.status_test_id = data.status_test_id
         db.session.commit()
         return Response(
             test_schema.dumps(existing_test),
