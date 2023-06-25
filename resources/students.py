@@ -45,9 +45,9 @@ class StudentAPI(MethodResource, Resource):
     @marshal_with(student_schema)
     @jwt_required()
     def get(self, id):
-        school = Student.query.get_or_404(id)
+        student = Student.query.get_or_404(id)
         return Response(
-            student_schema.dumps(school), mimetype="application/json", status=200
+            student_schema.dumps(student), mimetype="application/json", status=200
         )
 
     @doc(
