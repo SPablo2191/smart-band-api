@@ -28,6 +28,7 @@ class StudentSchema(Schema):
     id = fields.Integer()
     DNI = fields.String()
     name = fields.String()
+    age = fields.Integer()
     last_name = fields.String()
     status = fields.Boolean()
     register_date = fields.Date()
