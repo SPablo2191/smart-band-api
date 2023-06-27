@@ -29,7 +29,16 @@ class StudentsAPI(MethodResource, Resource):
     @jwt_required()
     def post(self, **kwargs):
         body = request.get_json()
-        new_student = Student(**body)
+        new_student = Student(
+            name=body["name"],
+            last_name=body["last_name"],
+            age=body["age"],
+            weight=body["weight"],
+            size=body["size"],
+            DNI=body["DNI"],
+            seat_height=body["seat_height"],
+            waist=body["waist"],
+        )
         db.session.add(new_student)
         db.session.commit()
         return Response(
@@ -60,9 +69,9 @@ class StudentAPI(MethodResource, Resource):
     def put(self, id, **kwargs):
         existing_student = Student.query.get_or_404(id)
         body = request.get_json()
-        result = body['result']
+        result = body["result"]
         print(result)
-        body.pop('result',None)
+        body.pop("result", None)
         data = Student(**body)
         existing_student.name = data.name
         new_result = Result(**result)
